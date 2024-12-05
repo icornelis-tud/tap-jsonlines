@@ -92,7 +92,12 @@ class TapJsonLinesFile(Tap):
         Returns:
             A list of discovered streams.
         """
-        return [streams.JsonLinesFile(self)]
+        return [
+            streams.JsonLinesFile(
+                self,
+                name=self.config.get("entity"),
+            )
+        ]
 
 
 if __name__ == "__main__":

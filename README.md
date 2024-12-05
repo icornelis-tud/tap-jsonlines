@@ -38,6 +38,13 @@ tap-jsonlinesfile --about --format=markdown
 ```
 -->
 
+| Setting | Required | Default | Description |
+|:--------|:--------:|:-------:|:------------|
+| path | True     | None    | Path to directory to find jsonl files. |
+| search_pattern | True     | None    | Search pattern to use when discovering files, using glob. Relative to 'path' |
+| compression | False    | None    | Indicate if the files are compressed. Only support for `gz` currently. |
+| variables_to_extract | False    | None    | A list of variables to extract, each with a JSON path and a column name. |
+
 A full list of supported settings and capabilities for this
 tap is available by running:
 

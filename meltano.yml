@@ -20,7 +20,6 @@ plugins:
         entity: test-entity
         path: tests/data
         search_pattern: source*.jsonl
-        compression: gz
         variables_to_extract:
           - path: $.entry
             column_name: test_column_name
