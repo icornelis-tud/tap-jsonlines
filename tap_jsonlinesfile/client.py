@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import gzip
 import json
 import typing as t
 from datetime import datetime
@@ -96,7 +97,15 @@ class JsonLinesFileStream(Stream):
 
     def read_file(self, file: Path) -> t.Iterable[str]:
         """Read a single file and return an iterator over the json array elements."""
-        with file.open("rt") as file_handle:
+        match self.config.get("compression"):
+            case "gz":
+                opener = gzip.open
+            case None:
+                opener = open
+            case other:
+                msg = f"Not a known compression type: {other}"
+                raise ValueError(msg)
+        with opener(file, "rt") as file_handle:
             for line in file_handle:
                 yield line.strip()
 

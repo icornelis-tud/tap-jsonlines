@@ -38,6 +38,12 @@ class TapJsonLinesFile(Tap):
             description="Search pattern to use when discovering files, using glob. Relative to 'path'",
         ),
         th.Property(
+            "compression",
+            th.StringType,
+            title="Compression",
+            description="Indicate if the files are compressed. Only support for gz currently.",
+        ),
+        th.Property(
             "variables_to_extract",
             th.ArrayType(
                 th.ObjectType(
