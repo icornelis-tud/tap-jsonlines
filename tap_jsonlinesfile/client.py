@@ -61,7 +61,8 @@ class JsonLinesFileStream(Stream):
         ]
 
     def _get_modified_time(self, file: Path) -> datetime:
-        return datetime.fromtimestamp(file.stat().st_mtime)  # noqa: DTZ006
+        tz_string = datetime.datetime.now().astimezone().tzinfo
+        return datetime.fromtimestamp(file.stat().st_mtime, tz_string)
 
     def parse_record(
         self, json_str: str, file: Path, serial_number: int, modified_time: datetime
