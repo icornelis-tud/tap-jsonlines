@@ -1,0 +1,12 @@
+{
+    "entity": "test-entity",
+    "path": "tests/data",
+    "search_pattern": "source*.jsonl",
+    "variables_to_extract": [
+        {
+            "path": "$.entry",
+            "column_name": "entry",
+            "type": "IntegerType"
+        }
+    ]
+}

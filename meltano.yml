@@ -1,0 +1,33 @@
+version: 1
+send_anonymous_usage_stats: true
+project_id: tap-jsonlinesfile
+default_environment: test
+environments:
+- name: test
+plugins:
+  extractors:
+  - name: tap-jsonlinesfile
+    namespace: tap_jsonlinesfile
+    pip_url: -e .
+    capabilities:
+    - state
+    - catalog
+    - discover
+    - about
+    - stream-maps
+
+    config:
+      entity: test-entity
+      path: tests/data
+      search_pattern: source*.jsonl
+      variables_to_extract:
+      - path: $.entry
+        column_name: test_column_name
+        type: IntegerType
+  - name: tap-singer-jsonl
+    variant: kgpayne
+    pip_url: tap-singer-jsonl
+  loaders:
+  - name: target-jsonl
+    variant: andyh1203
+    pip_url: target-jsonl
